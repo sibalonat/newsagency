@@ -1,0 +1,27 @@
+{% extends "news/layout.html" %}
+{% load static %}
+
+{% block body %}
+    <h1>{{ article.title }}</h1>
+    <p>{{ article.content }}</p>
+    <p>Author: {{ article.author.username }}</p>
+    <p>Created at: {{ article.created_at }}</p>
+    <p>Updated at: {{ article.updated_at }}</p>
+    <h2>Comments</h2>
+    <ul>
+        {% for comment in comments %}
+            <li>{{ comment.content }} - {{ comment.author.username }}</li>
+        {% endfor %}
+    </ul>
+    <form method="post" action="{% url 'comment_create' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Comment</button>
+    </form>
+    <a href="{% url 'article_edit' article.id %}">Edit</a>
+    <a href="{% url 'article_delete' article.id %}">Delete</a>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'mail/inbox.js' %}"></script>
+{% endblock %}
