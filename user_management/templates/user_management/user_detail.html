@@ -1,0 +1,12 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>{{ user.username }}</h1>
+  <p>Email: {{ user.email }}</p>
+  <p>Is Editor: {{ user.is_editor }}</p>
+  <p>Is Reader: {{ user.is_reader }}</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Toggle Editor/Reader</button>
+  </form>
+{% endblock %}

@@ -10,6 +10,7 @@ class Command(BaseCommand):
             {'username': 'editor2', 'email': 'editor2@example.com', 'is_editor': True, 'is_reader': False},
             {'username': 'reader1', 'email': 'reader1@example.com', 'is_editor': False, 'is_reader': True},
             {'username': 'reader2', 'email': 'reader2@example.com', 'is_editor': False, 'is_reader': True},
+            {'username': 'super', 'email': 'super@user.com', 'is_superuser': True, 'is_staff': True},
         ]
 
         for user_data in users:
