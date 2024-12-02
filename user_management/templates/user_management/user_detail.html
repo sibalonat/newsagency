@@ -1,5 +1,5 @@
-{% extends "base_generic.html" %}
-
+{% extends "user_management/layout.html" %}
+{% load static %}
 {% block content %}
   <h1>{{ user.username }}</h1>
   <p>Email: {{ user.email }}</p>
@@ -9,4 +9,8 @@
     {% csrf_token %}
     <button type="submit">Toggle Editor/Reader</button>
   </form>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'user_management/index.js' %}"></script>
 {% endblock %}
