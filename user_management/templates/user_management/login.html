@@ -2,9 +2,21 @@
 
 {% block body %}
   <h2>Login</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Login</button>
-  </form>
+  <div class="card">
+    <div class="card-body">
+      <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="username">Username</label>
+          {{ form.username|add_class:"form-control" }}
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          {{ form.password|add_class:"form-control" }}
+        </div>
+        {% comment %} {{ form.as_p }}
+        <button type="submit">Login</button> {% endcomment %}
+      </form>
+    </div>
+  </div>
 {% endblock %}
