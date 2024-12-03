@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Article, Comment
 from .forms import ArticleForm, CommentForm
 
+@login_required(login_url='/user_management/login/')
 def index(request):
     articles = Article.objects.all()
     return render(request, 'news/index.html', {'articles': articles})
