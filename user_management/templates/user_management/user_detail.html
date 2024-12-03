@@ -1,15 +1,57 @@
 {% extends "user_management/layout.html" %}
 {% load static %}
 {% block body %}
-  <h1>{{ user.username }}</h1>
+  {% comment %} <h1>{{ user.username }}</h1> {% endcomment %}
   <p>Email: {{ user.email }}</p>
-  <p>Is Editor: {{ user.is_editor }}</p>
-  <p>Is Reader: {{ user.is_reader }}</p>
-  <form method="post">
-    {% csrf_token %}
-    <button type="submit">Toggle Editor/Reader</button>
-  </form>
+  {% comment %} <p>Is Editor: {{ user.is_editor }}</p>
+  <p>Is Reader: {{ user.is_reader }}</p> {% endcomment %}
+  <div class="card w-50">
+    <div class="card-header">
+      <h1 class="text-center text-uppercase">
+        {{ user.username }}'s Posts
+      </h1>
+      <div class="row"> 
+        <div class="col-6">
+          <p class="text-secondary">Is Editor: 
+            <span class="fw-bold text-dark">
+              {{ user.is_editor }}
+            </span> 
+          </p>
+        </div>
+        <div class="col-6">
+          <p class="text-secondary">Is Reader:
+            <span class="fw-bold text-dark">
+              {{ user.is_reader }}
+            </span> 
+          </p>
+        </div>
+        <div class="col-12">
+          <form method="post" action="{% url 'user_delete' user.id %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Delete</button>
+          </form>
+        </div>
+      </div>
+      {% comment %} <p class="text-secondary">Is Editor: 
+        <span class="fw-bold text-dark">
+          {{ user.is_editor }}
+        </span> 
+      </p>
+      <p class="text-secondary">Is Reader:
+        <span class="fw-bold text-dark">
+          {{ user.is_reader }}
+        </span> 
+      </p> {% endcomment %}
+      {% comment %} <p>Is Reader: {{ user.is_reader }}</p> {% endcomment %}
+    </div>
+    <form method="post">
+      {% csrf_token %}
+      <button type="submit">Toggle Editor/Reader</button>
+    </form>
+
+  </div>
 {% endblock %}
+
 
 {% block script %}
     <script src="{% static 'user_management/index.js' %}"></script>

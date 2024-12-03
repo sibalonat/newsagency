@@ -9,11 +9,26 @@
   </div>
   <div class="list-group">
     {% for user in users %}
-    <a href="{% url 'user_detail' user.id %}" class="list-group-item list-group-item-action" aria-current="true">
-      {{ user.username }}
+    <div href="{% url 'user_detail' user.id %}" 
+    class="list-group-item list-group-item-action d-flex flex-row justify-content-between" 
+    aria-current="true">
+    <a href="{% url 'user_detail' user.id %}" 
+    class="text-decoration-none col-10" 
+    aria-current="true">
+      {{ user.username }} 
     </a>
+    <form method="post" action="{% url 'user_delete' user.id %}">
+      {% csrf_token %}
+      {% comment %} <button type="submit" class="btn btn-danger">Delete</button> {% endcomment %}
+      <button class="btn btn-danger">
+        <i class="bi bi-trash3"></i>
+      </button>
+    </form>
+    </div>
     {% endfor %}
   </div>
 </div>
-  {% comment %} <a href="{% url 'user_create' %}">Create User</a> {% endcomment %}
+<a href="{% url 'user_create' %}">
+  Create User
+</a>
 {% endblock %}

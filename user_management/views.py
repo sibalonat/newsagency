@@ -50,3 +50,11 @@ def user_create(request):
     else:
         form = UserCreationForm()
     return render(request, 'user_management/user_create.html', {'form': form})
+
+@login_required
+def user_delete(request, user_id):
+    user = get_object_or_404(User, id=user_id)
+    if request.method == 'POST':
+        user.delete()
+        return redirect('user_list')
+    return render(request, 'user_management/user_confirm_delete.html', {'user': user})
