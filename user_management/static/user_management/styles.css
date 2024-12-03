@@ -1,0 +1,14 @@
+@media (max-width: 600px) {
+    body {
+        font-size: 14px;
+    }
+}
+
+.text-sm {
+    font-size: 0.975rem;
+}
+
+.form-control:focus {
+    border-color: #007bff;
+    box-shadow: none !important;
+}
