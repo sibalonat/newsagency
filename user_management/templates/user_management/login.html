@@ -1,8 +1,12 @@
 {% extends "user_management/layout.html" %}
-
+{% load form_tags %}
 {% block body %}
-  <h2>Login</h2>
-  <div class="card">
+<div class="card my-auto w-50">
+    <div class="card-header">
+      <h2 class="text-center text-uppercase">
+        Login
+      </h2>
+    </div>
     <div class="card-body">
       <form method="post">
         {% csrf_token %}
