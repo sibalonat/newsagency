@@ -3,6 +3,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login as auth_login
 from news.models import User
 
+from .forms import UserCreationForm
+
 from django.contrib.auth.forms import AuthenticationForm
 from django.views.decorators.csrf import csrf_protect
 
@@ -35,3 +37,16 @@ def custom_login(request):
     else:
         form = AuthenticationForm(request)
     return render(request, 'user_management/login.html', {'form': form})
+
+@login_required
+def user_create(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.set_password(form.cleaned_data['password'])
+            user.save()
+            return redirect('user_list')
+    else:
+        form = UserCreationForm()
+    return render(request, 'user_management/user_create.html', {'form': form})

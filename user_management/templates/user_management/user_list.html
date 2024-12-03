@@ -1,10 +1,19 @@
 {% extends "user_management/layout.html" %}
 
 {% block body %}
-  <h1>User List</h1>
-  <ul>
+<div class="card w-50">
+  <div class="card-header">
+    <h1 class="text-center text-uppercase">
+      User List
+    </h1>
+  </div>
+  <div class="list-group">
     {% for user in users %}
-      <li><a href="{% url 'user_detail' user.id %}">{{ user.username }}</a></li>
+    <a href="{% url 'user_detail' user.id %}" class="list-group-item list-group-item-action" aria-current="true">
+      {{ user.username }}
+    </a>
     {% endfor %}
-  </ul>
+  </div>
+</div>
+  {% comment %} <a href="{% url 'user_create' %}">Create User</a> {% endcomment %}
 {% endblock %}
