@@ -1,15 +1,16 @@
 {% extends "user_management/layout.html" %}
 {% load static %}
 {% block body %}
-  {% comment %} <h1>{{ user.username }}</h1> {% endcomment %}
-  <p>Email: {{ user.email }}</p>
-  {% comment %} <p>Is Editor: {{ user.is_editor }}</p>
-  <p>Is Reader: {{ user.is_reader }}</p> {% endcomment %}
   <div class="card w-50">
     <div class="card-header">
       <h1 class="text-center text-uppercase">
-        {{ user.username }}'s Posts
+        <a>{{ user.username }}</a>'s Posts
       </h1>
+      <p class="text-center d-flex flex-column">Email: 
+        <span >
+          {{ user.email }}
+        </span> 
+      </p>
       <div class="row"> 
         <div class="col-6">
           <p class="text-secondary">Is Editor: 
@@ -25,28 +26,11 @@
             </span> 
           </p>
         </div>
-        <div class="col-12">
-          <form method="post" action="{% url 'user_delete' user.id %}">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-danger">Delete</button>
-          </form>
-        </div>
       </div>
-      {% comment %} <p class="text-secondary">Is Editor: 
-        <span class="fw-bold text-dark">
-          {{ user.is_editor }}
-        </span> 
-      </p>
-      <p class="text-secondary">Is Reader:
-        <span class="fw-bold text-dark">
-          {{ user.is_reader }}
-        </span> 
-      </p> {% endcomment %}
-      {% comment %} <p>Is Reader: {{ user.is_reader }}</p> {% endcomment %}
     </div>
     <form method="post">
       {% csrf_token %}
-      <button type="submit">Toggle Editor/Reader</button>
+      <button type="submit" class="btn btn-primary w-100">Toggle Editor/Reader</button>
     </form>
 
   </div>
