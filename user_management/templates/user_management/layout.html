@@ -13,6 +13,44 @@
     </head>
     <body>
         <div class="container min-vh-100 d-flex align-items-center flex-column">
+            <div>
+                {% if user.is_authenticated %}
+                    Signed in as <strong>{{ user.username }}</strong>.
+                {% else %}
+                    Not signed in.
+                {% endif %}
+            </div>
+            <ul class="nav">
+                <li class="nav-item">
+                    {% if user.is_authenticated %}
+                        Signed in as <strong>{{ user.username }}</strong>.
+                    {% else %}
+                        Not signed in.
+                    {% endif %}
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'categories' %}">Categories</a>
+                </li>
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a  class="nav-link" href="{% url 'watchlist' %}">Watchlist</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'create_listing' %}" class="btn btn-primary mb-3">Create Listing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">Log In</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'register' %}">Register</a>
+                    </li>
+                {% endif %}
+            </ul>
+            <hr>
             {% block body %}
             {% endblock %}
         </div>
