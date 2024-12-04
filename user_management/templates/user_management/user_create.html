@@ -20,30 +20,40 @@
             Username
           </label>
           {{ form.username|add_class:"form-control rounded-0" }}
+          {% if form.username.errors %}
+            <div class="text-danger">{{ form.username.errors }}</div>
+          {% endif %}
+
         </div>
         <div class="form-group">
           <label for="email" class="mt-2 mb-1 text-secondary text-sm">
             Email
           </label>
           {{ form.email|add_attrs:"class:form-control rounded-0, type:email" }}
+          {% if form.username.errors %}
+            <div class="text-danger">{{ form.username.errors }}</div>
+          {% endif %}
         </div>
         <div class="form-group">
           <label for="password" class="mt-2 mb-1 text-secondary text-sm">
             Password
           </label>
           {{ form.password|add_class:"form-control rounded-0" }}
+          {% if form.password.errors %}
+            <div class="text-danger">{{ form.password.errors }}</div>
+          {% endif %}
         </div>
-        <div class="form-group form-check">
-          <label for="isreader" class="mt-2 mb-1 text-secondary text-sm form-check-label">
+        <div class="form-check d-flex align-items-center">
+          {{ form.is_reader|add_attrs:"class:form-check-input rounded-0, type:checkbox, id: isreader" }}
+          <label for="isreader" class="mt-2 ms-2 mb-1 text-secondary text-sm form-check-label">
             Is Reader
           </label>
-          {{ form.is_reader|add_attrs:"class:form-check-input rounded-0, type:checkbox, id: isreader" }}
         </div>
-        <div class="form-group form-check">
-          <label for="iseditor" class="mt-2 mb-1 text-secondary text-sm form-check-label">
+        <div class="form-check d-flex align-items-center">
+          {{ form.is_editor|add_attrs:"class:form-check-input rounded-0, type:checkbox, id: iseditor" }}
+          <label for="iseditor" class="mt-2 mb-1 ms-2 text-secondary text-sm form-check-label">
             Is Editor
           </label>
-          {{ form.is_editor|add_attrs:"class:form-check-input rounded-0, type:checkbox, id: iseditor" }}
         </div>
         <div class="form-group">
           <button type="submit" class="btn btn-primary rounded-0 mt-2">
