@@ -46,6 +46,7 @@ def user_create(request):
             user = form.save(commit=False)
             user.set_password(form.cleaned_data['password'])
             user.save()
+            form = UserCreationForm()
             return redirect('user_list')
     else:
         form = UserCreationForm()
