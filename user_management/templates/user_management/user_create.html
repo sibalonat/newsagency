@@ -14,7 +14,7 @@
           <label for="username" class="mt-2 mb-1 text-secondary text-sm">
             Username
           </label>
-          {{ form.username|add_class:"form-control rounded-0" }}
+          {{ form.username|add_attrs:"class:form-control rounded-0, autocomplete:off" }}
           {% if form.username.errors %}
             <div class="text-danger">{{ form.username.errors }}</div>
           {% endif %}
