@@ -8,5 +8,11 @@
             <li><a href="{% url 'article_detail' article.id %}">{{ article.title }}</a></li>
         {% endfor %}
     </ul>
-    <a href="{% url 'news:article_create' %}">Create New Article</a>
+    {% if user.is_authenticated %}
+        {% if user.is_editor %}
+            <a href="{% url 'news:article_create' %}">
+                Create New Article
+            </a>
+        {% endif %}
+    {% elif %}
 {% endblock %}
