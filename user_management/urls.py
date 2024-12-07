@@ -4,6 +4,8 @@ from django.contrib.auth.views import LogoutView
 from . import views
 # from .views import CustomLogoutView
 
+app_name = 'management'
+
 urlpatterns = [
     # path('news/', include('news.urls')),
     path('users/', views.user_list, name='user_list'),

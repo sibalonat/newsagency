@@ -31,14 +31,14 @@
                         </li>
                     {% elif user.is_editor %}
                         <li class="nav-item my-auto">
-                            <a class="nav-link" href="/article/new/">Create Article</a>
+                            <a class="nav-link" href="news:article_create">Create Article</a>
                         </li>
                         <li class="nav-item my-auto">
                             <a class="nav-link" href="/">List of Articles</a>
                         </li>
                     {% endif %}
                     <li class="nav-item my-auto">
-                        <form method="post" action="{% url 'logout' %}">
+                        <form method="post" action="{% url 'management:logout' %}">
                             {% csrf_token %}
                             <button type="submit" class="btn btn-link nav-link" style="padding: 0;">Log Out</button>
                         </form>

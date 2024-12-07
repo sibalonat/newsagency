@@ -31,9 +31,9 @@ def custom_login(request):
             user = form.get_user()
             auth_login(request, user)
             if user.is_superuser:
-                return redirect('/user_management/users/')
+                return redirect('user_list')
             else:
-                return redirect('/news/article_create/')
+                return redirect('news:article_create')
     else:
         form = AuthenticationForm(request)
     return render(request, 'user_management/login.html', {'form': form})

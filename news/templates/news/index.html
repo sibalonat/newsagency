@@ -8,5 +8,5 @@
             <li><a href="{% url 'article_detail' article.id %}">{{ article.title }}</a></li>
         {% endfor %}
     </ul>
-    <a href="{% url 'article_create' %}">Create New Article</a>
+    <a href="{% url 'news:article_create' %}">Create New Article</a>
 {% endblock %}
