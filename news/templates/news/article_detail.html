@@ -13,13 +13,13 @@
             <li>{{ comment.content }} - {{ comment.author.username }}</li>
         {% endfor %}
     </ul>
-    <form method="post" action="{% url 'comment_create' %}">
+    <form method="post" action="{% url 'news:comment_create' %}">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Add Comment</button>
     </form>
-    <a href="{% url 'article_edit' article.id %}">Edit</a>
-    <a href="{% url 'article_delete' article.id %}">Delete</a>
+    <a href="{% url 'news:article_edit' article.id %}">Edit</a>
+    <a href="{% url 'news:article_delete' article.id %}">Delete</a>
 {% endblock %}
 
 {% block script %}

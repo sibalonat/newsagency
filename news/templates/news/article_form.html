@@ -3,16 +3,10 @@
 {% load static %}
 
 {% block body %}
-    {% comment %} <h1>Create/Edit Article</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Save</button>
-    </form> {% endcomment %}
     <div class="card w-50">
         <div class="card-header">
           <h1 class="text-center text-uppercase">
-            Create User
+            Create Article
           </h1>
         </div>
         <div class="card-body">
@@ -37,15 +31,6 @@
                     <div class="text-danger">{{ form.content.errors }}</div>
                 {% endif %}
               </div>
-              {% comment %} <div class="form-group">
-                <label for="author" class="mt-2 mb-1 text-secondary text-sm">
-                  Author
-                </label>
-                {{ form.author|add_class:"form-control rounded-0" }}
-                {% if form.author.errors %}
-                  <div class="text-danger">{{ form.author.errors }}</div>
-                {% endif %}
-              </div> {% endcomment %}
               <div class="form-group">
                 <label for="image_url" class="mt-2 mb-1 text-secondary text-sm">
                   Image URL
