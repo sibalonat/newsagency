@@ -7,7 +7,7 @@ class RoleBasedAccessMiddleware:
 
     def __call__(self, request):
         user_management_paths = ['/user_management/', '/user_management/users/', '/user_management/users/create/']
-        article_create_path = reverse('article_create')
+        article_create_path = reverse('news:article_create')
 
         if request.user.is_authenticated:
             if request.user.is_reader:
