@@ -14,7 +14,7 @@ def user_list(request):
     users = User.objects.all()
     return render(request, 'user_management/user_list.html', {'users': users})
 
-@login_required
+@login_required(login_url=reverse_lazy('login'))
 def user_detail(request, user_id):
     user = get_object_or_404(User, id=user_id)
     if request.method == 'POST':
