@@ -21,7 +21,7 @@ def article_create(request):
             article = form.save(commit=False)
             article.author = request.user
             article.save()
-            return redirect('index')
+            return redirect('news:index')
     else:
         form = ArticleForm()
     return render(request, 'news/article_form.html', {'form': form})

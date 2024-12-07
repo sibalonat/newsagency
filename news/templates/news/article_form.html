@@ -37,7 +37,7 @@
                     <div class="text-danger">{{ form.content.errors }}</div>
                 {% endif %}
               </div>
-              <div class="form-group">
+              {% comment %} <div class="form-group">
                 <label for="author" class="mt-2 mb-1 text-secondary text-sm">
                   Author
                 </label>
@@ -45,16 +45,7 @@
                 {% if form.author.errors %}
                   <div class="text-danger">{{ form.author.errors }}</div>
                 {% endif %}
-              </div>
-              <div class="form-group">
-                <label for="image_url" class="mt-2 mb-1 text-secondary text-sm">
-                  Image URL
-                </label>
-                {{ form.image_url|add_class:"form-control rounded-0" }}
-                {% if form.image_url.errors %}
-                  <div class="text-danger">{{ form.image_url.errors }}</div>
-                {% endif %}
-              </div>
+              </div> {% endcomment %}
               <div class="form-group">
                 <label for="image_url" class="mt-2 mb-1 text-secondary text-sm">
                   Image URL
