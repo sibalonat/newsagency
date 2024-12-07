@@ -43,7 +43,7 @@ def article_delete(request, id):
     article = get_object_or_404(Article, id=id)
     if request.method == 'POST':
         article.delete()
-        return redirect('index')
+        return redirect('news:index')
     return render(request, 'news/article_confirm_delete.html', {'article': article})
 
 @login_required

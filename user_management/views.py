@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse_lazy
 from django.contrib.auth import login as auth_login
 from news.models import User
 
@@ -8,7 +9,7 @@ from .forms import UserCreationForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.views.decorators.csrf import csrf_protect
 
-@login_required
+@login_required(login_url=reverse_lazy('login'))
 def user_list(request):
     users = User.objects.all()
     return render(request, 'user_management/user_list.html', {'users': users})
@@ -31,7 +32,7 @@ def custom_login(request):
             user = form.get_user()
             auth_login(request, user)
             if user.is_superuser:
-                return redirect('user_list')
+                return redirect('management:user_list')
             else:
                 return redirect('news:article_create')
     else:
