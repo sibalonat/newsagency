@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
-from django.contrib.auth import login as auth_login
+from django.contrib.auth import login as auth_login, authenticate
 from news.models import User
 
 from .forms import UserCreationForm
@@ -21,7 +21,7 @@ def user_detail(request, user_id):
         user.is_editor = not user.is_editor
         user.is_reader = not user.is_reader
         user.save()
-        return redirect('user_detail', user_id=user.id)
+        return redirect('management:user_detail', user_id=user.id)
     return render(request, 'user_management/user_detail.html', {'user': user})
 
 @csrf_protect
@@ -58,5 +58,20 @@ def user_delete(request, user_id):
     user = get_object_or_404(User, id=user_id)
     if request.method == 'POST':
         user.delete()
-        return redirect('user_list')
+        return redirect('management:user_list')
     return render(request, 'user_management/user_confirm_delete.html', {'user': user})
+
+
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=password)
+            auth_login(request, user)
+            return redirect('news:index')
+    else:
+        form = UserCreationForm()
+    return render(request, 'registration/register.html', {'form': form})

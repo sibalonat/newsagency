@@ -24,16 +24,18 @@
                 </p>
 
                 </div>
-                <div class="col-2 button-display">
-                    <a href="{% url 'news:article_edit' article.id %}" class="btn btn-primary float-end">
-                        <i class="bi bi-pencil"></i>
-                    </a>
-                </div>
-                <div class="col-2 button-display">
-                    <a href="{% url 'news:article_delete' article.id %}" class="btn btn-danger float-end">
-                        <i class="bi bi-trash3"></i>
-                    </a>
-                </div>
+                {% if article.author == request.user %}
+                    <div class="col-2 button-display">
+                        <a href="{% url 'news:article_edit' article.id %}" class="btn btn-primary float-end">
+                            <i class="bi bi-pencil"></i>
+                        </a>
+                    </div>
+                    <div class="col-2 button-display">
+                        <a href="{% url 'news:article_delete' article.id %}" class="btn btn-danger float-end">
+                            <i class="bi bi-trash3"></i>
+                        </a>
+                    </div>
+                {% endif %}
             </div>
         </div>
         <div class="card-body">
@@ -54,16 +56,20 @@
                     </li>
                 {% endfor %}
             </ul>
-            <form method="post" action="{% url 'news:comment_create' article.id %}">
-                {% csrf_token %}
-                <div class="form-group">
-                    {{ form.content|add_attrs:"class:form-control rounded-0, type:textarea, rows:2, cols:50" }}
-                    {% if form.content.errors %}
-                        <div class="text-danger">{{ form.content.errors }}</div>
-                    {% endif %}
-                </div>
-                <button type="submit" class="btn btn-primary mt-2">Add Comment</button>
-            </form>
+            {% if user.is_authenticated and user.is_reader %}
+                <form method="post" action="{% url 'news:comment_create' article.id %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        {{ form.content|add_attrs:"class:form-control rounded-0, type:textarea, rows:2, cols:50" }}
+                        {% if form.content.errors %}
+                            <div class="text-danger">{{ form.content.errors }}</div>
+                        {% endif %}
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-2">Add Comment</button>
+                </form>
+            {% else %}
+                <a href="{% url 'register' %}" class="btn btn-primary mt-2">Register to Add Comment</a>
+            {% endif %}
         </div>
     </div>
 {% endblock %}
