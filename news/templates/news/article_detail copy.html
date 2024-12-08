@@ -61,3 +61,26 @@
         </div>
     </div>
 {% endblock %}
+    {% comment %} <h1>{{ article.title }}</h1>
+    <p>{{ article.content }}</p>
+    <p>Author: {{ article.author.username }}</p>
+    <p>Created at: {{ article.created_at }}</p>
+    <p>Updated at: {{ article.updated_at }}</p>
+    <h2>Comments</h2>
+    <ul>
+        {% for comment in comments %}
+            <li>{{ comment.content }} - {{ comment.author.username }}</li>
+        {% endfor %}
+    </ul>
+    <form method="post" action="{% url 'news:comment_create' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Comment</button>
+    </form>
+    <a href="{% url 'news:article_edit' article.id %}">Edit</a>
+    <a href="{% url 'news:article_delete' article.id %}">Delete</a>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'mail/inbox.js' %}"></script>
+{% endblock %} {% endcomment %}

@@ -12,10 +12,24 @@ def index(request):
     page_obj = paginator.get_page(page_number)
     return render(request, 'news/index.html', {'page_obj': page_obj})
 
+# def article_detail(request, id):
+#     article = get_object_or_404(Article, id=id)
+#     comments = article.comments.all()
+#     return render(request, 'news/article_detail.html', {'article': article, 'comments': comments})
 def article_detail(request, id):
     article = get_object_or_404(Article, id=id)
     comments = article.comments.all()
-    return render(request, 'news/article_detail.html', {'article': article, 'comments': comments})
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.author = request.user
+            comment.article = article
+            comment.save()
+            return redirect('article_detail', id=id)
+    else:
+        form = CommentForm()
+    return render(request, 'news/article_detail.html', {'article': article, 'comments': comments, 'form': form})
 
 @login_required
 def article_create(request):
