@@ -4,7 +4,9 @@
   <div class="card w-50">
     <div class="card-header">
       <h1 class="text-center text-uppercase">
-        <a>{{ user.username }}</a>'s Posts
+        <p class="fw-bold" onclick="getUserArticles({{ user.id }})">
+          {{ user.username }} <span class="d-inline">'s Posts</span>  
+        </p>
       </h1>
       <p class="text-center d-flex flex-column">Email: 
         <span >
@@ -33,10 +35,13 @@
       <button type="submit" class="btn btn-primary w-100">Toggle Editor/Reader</button>
     </form>
   </div>
-  <div id="articles-container" class="mt-4"></div>
+  <div id="articles-container" class="mt-4 w-50"></div>
 {% endblock %}
 
 
 {% block script %}
+    <script>
+      const userArticlesUrl = "{% url 'news:user_articles' 0 %}";
+    </script>
     <script src="{% static 'user_management/index.js' %}"></script>
 {% endblock %}
