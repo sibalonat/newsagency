@@ -48,7 +48,7 @@ def article_edit(request, id):
         form = ArticleForm(request.POST, instance=article)
         if form.is_valid():
             form.save()
-            return redirect('article_detail', id=id)
+            return redirect('news:article_detail', id=id)
     else:
         form = ArticleForm(instance=article)
     return render(request, 'news/article_form.html', {'form': form})

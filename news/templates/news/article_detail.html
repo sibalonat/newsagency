@@ -73,7 +73,7 @@
                         Register to Add Comment
                     </a>
                 {% endif %}
-            {% else %}
+            {% elif not user.is_authenticated and not user.is_editor %}
                 <a href="{% url 'management:register' %}" class="btn btn-success mt-2">
                     Register to Add Comment
                 </a>
