@@ -66,8 +66,9 @@ def register(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
+            user = form.save(commit=False)
             user.is_reader = True
-            user = form.save()
+            user.save()
             
             auth_login(request, user) 
             return redirect('news:index')
