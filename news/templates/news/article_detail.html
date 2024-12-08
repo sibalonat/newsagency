@@ -56,19 +56,21 @@
                     </li>
                 {% endfor %}
             </ul>
-            {% if user.is_authenticated and user.is_reader %}
-                <form method="post" action="{% url 'news:comment_create' article.id %}">
-                    {% csrf_token %}
-                    <div class="form-group">
-                        {{ form.content|add_attrs:"class:form-control rounded-0, type:textarea, rows:2, cols:50" }}
-                        {% if form.content.errors %}
-                            <div class="text-danger">{{ form.content.errors }}</div>
-                        {% endif %}
-                    </div>
-                    <button type="submit" class="btn btn-primary mt-2">Add Comment</button>
-                </form>
-            {% else %}
-                <a href="{% url 'management:register' %}" class="btn btn-primary mt-2">Register to Add Comment</a>
+            {% if user.is_authenticated and not user.is_editor %}
+                {% if user.is_reader %}
+                    <form method="post" action="{% url 'news:comment_create' article.id %}">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            {{ form.content|add_attrs:"class:form-control rounded-0, type:textarea, rows:2, cols:50" }}
+                            {% if form.content.errors %}
+                                <div class="text-danger">{{ form.content.errors }}</div>
+                            {% endif %}
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-2">Add Comment</button>
+                    </form>
+                {% else %}
+                    <a href="{% url 'management:register' %}" class="btn btn-primary mt-2">Register to Add Comment</a>
+                {% endif %}
             {% endif %}
         </div>
     </div>

@@ -4,7 +4,7 @@ from .models import Article, Comment
 from django.core.paginator import Paginator
 from .forms import ArticleForm, CommentForm
 
-@login_required(login_url='/user_management/login/')
+
 def index(request):
     articles = Article.objects.all().order_by('-updated_at')
     paginator = Paginator(articles, 10)
@@ -12,6 +12,7 @@ def index(request):
     page_obj = paginator.get_page(page_number)
     return render(request, 'news/index.html', {'page_obj': page_obj})
 
+@login_required(login_url='/user_management/login/')
 def article_detail(request, id):
     article = get_object_or_404(Article, id=id)
     comments = article.comments.all()
