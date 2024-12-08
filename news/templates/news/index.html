@@ -2,48 +2,37 @@
 {% load static %}
 
 {% block body %}
-    {% comment %} <h1>News Articles</h1>
-    <ul>
-        {% for article in articles %}
-            <li><a href="{% url 'news:article_detail' article.id %}">{{ article.title }}</a></li>
-        {% endfor %}
-    </ul>
-    {% if user.is_authenticated %}
-        {% if user.is_editor %}
-            <a href="{% url 'news:article_create' %}">
-                Create New Article
-            </a>
-        {% endif %}
-    {% endif %} {% endcomment %}
     <div class="card w-50">
-        <div class="card-header row">
-          <h1 class="text-center text-uppercase col-6">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-6">
+              <h1 class="text-uppercase">
                 News Articles
-          </h1>
-            {% if user.is_authenticated %}
-                {% if user.is_editor %}
-                    <a href="{% url 'news:article_create' %}">
-                        Create New Article
-                    </a>
-                {% endif %}
-            {% endif %}
+              </h1>
+            </div>
+            <div class="col-6">
+              <a href="{% url 'news:article_create' %}" class="btn btn-primary float-end">
+                Create New Article
+              </a>
+            </div>
+          </div>
         </div>
         <div class="list-group">
-          {% for user in users %}
-          <div href="{% url 'user_detail' user.id %}" 
+          {% for article in articles %}
+          <div
           class="list-group-item list-group-item-action d-flex flex-row justify-content-between" 
           aria-current="true">
-          <a href="{% url 'user_detail' user.id %}" 
-          class="text-decoration-none col-10" 
-          aria-current="true">
-            {{ user.username }} 
-          </a>
-          <form method="post" action="{% url 'user_delete' user.id %}">
-            {% csrf_token %}
-            <button class="btn btn-danger">
-              <i class="bi bi-trash3"></i>
-            </button>
-          </form>
+            <a href="{% url 'news:article_detail' article.id %}" 
+            class="text-decoration-none col-10" 
+            aria-current="true">
+              {{ article.title }} 
+            </a>
+            <form method="post" action="{% url 'news:article_delete' article.id %}">
+              {% csrf_token %}
+              <button class="btn btn-danger">
+                <i class="bi bi-trash3"></i>
+              </button>
+            </form>
           </div>
           {% endfor %}
         </div>
