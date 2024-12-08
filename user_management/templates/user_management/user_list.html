@@ -19,7 +19,6 @@
     </a>
     <form method="post" action="{% url 'user_delete' user.id %}">
       {% csrf_token %}
-      {% comment %} <button type="submit" class="btn btn-danger">Delete</button> {% endcomment %}
       <button class="btn btn-danger">
         <i class="bi bi-trash3"></i>
       </button>
