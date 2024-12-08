@@ -74,4 +74,4 @@ def register(request):
             return redirect('news:index')
     else:
         form = UserCreationForm()
-    return render(request, 'registration/register.html', {'form': form})
+    return render(request, 'user_management/register.html', {'form': form})
