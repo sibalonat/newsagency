@@ -3,3 +3,15 @@
         font-size: 14px;
     }
 }
+
+.contents {
+    display: contents;
+}
+
+.down_pagination {
+    bottom: -65px;
+}
+
+.text-sm {
+    font-size: 0.8rem;
+}

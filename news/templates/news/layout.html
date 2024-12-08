@@ -12,10 +12,6 @@
         {% endblock %}
     </head>
     <body>
-        {% comment %} <div class="container">
-            {% block body %}
-            {% endblock %}
-        </div> {% endcomment %}
         <div class="container min-vh-100 d-flex align-items-center flex-column">
             <ul class="nav">
                 <li class="nav-item my-auto">
@@ -57,8 +53,10 @@
             {% endif %}
             </ul>
             <hr>
-            {% block body %}
-            {% endblock %}
+            <div class="body position-relative h-100 contents">
+                {% block body %}
+                {% endblock %}
+            </div>
         </div>
     </body>
 </html>

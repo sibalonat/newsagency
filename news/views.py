@@ -6,7 +6,7 @@ from .forms import ArticleForm, CommentForm
 
 @login_required(login_url='/user_management/login/')
 def index(request):
-    articles = Article.objects.all().order_by('-timestamp')
+    articles = Article.objects.all().order_by('-updated_at')
     paginator = Paginator(articles, 10)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)

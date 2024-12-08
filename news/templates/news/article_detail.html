@@ -2,6 +2,48 @@
 {% load static %}
 
 {% block body %}
+    <div class="card w-75">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-8">
+                <h1 class="text-uppercase">
+                    {{ article.title }}
+                </h1>
+                <p class="text-secondary text-sm"> Author:  
+                    <span class="text-capitalize fw-bold"> {{ article.author.username }} </span> 
+                </p>
+                <p class="text-secondary text-sm mb-1">
+                    Created at: {{ article.created_at }}
+                </p>
+                <p class="text-secondary text-sm mb-1">
+                    Updated at: {{ article.updated_at }}
+                </p>
+                <p class="text-secondary fst-italic text-sm mb-1">
+                    Comments: {{ comments.count }}
+                </p>
+
+                </div>
+                <div class="col-2">
+                    <a href="{% url 'news:article_edit' article.id %}" class="btn btn-primary float-end">
+                        <i class="bi bi-pencil"></i>
+                    </a>
+                </div>
+                <div class="col-2">
+                    <form method="post" action="{% url 'news:article_delete' article.id %}">
+                        {% csrf_token %}
+                        <button class="btn btn-danger">
+                          <i class="bi bi-trash3"></i>
+                        </button>
+                      </form>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+
+
+        </div>
+
+    </div>
     <h1>{{ article.title }}</h1>
     <p>{{ article.content }}</p>
     <p>Author: {{ article.author.username }}</p>
