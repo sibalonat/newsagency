@@ -54,7 +54,7 @@
                     </li>
                 {% endfor %}
             </ul>
-            <form method="post" action="{% url 'news:comment_create' %}">
+            <form method="post" action="{% url 'news:comment_create' article.id %}">
                 {% csrf_token %}
                 <div class="form-group">
                     {{ form.content|add_attrs:"class:form-control rounded-0, type:textarea, rows:2, cols:50" }}

@@ -65,12 +65,14 @@ def article_delete(request, id):
     return render(request, 'news/article_confirm_delete.html', {'article': article})
 
 @login_required
-def comment_create(request):
+def comment_create(request, article_id):
+    article = get_object_or_404(Article, id=article_id)
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
             comment.author = request.user
+            comment.article = article
             comment.save()
-            return redirect('article_detail', id=comment.article.id)
-    return redirect('index')
+            return redirect('news:article_detail', id=comment.article.id)
+    return redirect('news:index')

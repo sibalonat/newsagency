@@ -11,6 +11,6 @@ urlpatterns = [
     path('article/new/', views.article_create, name='article_create'),
     path('article/edit/<int:id>/', views.article_edit, name='article_edit'),
     path('article/delete/<int:id>/', views.article_delete, name='article_delete'),
-    path('comment/new/', views.comment_create, name='comment_create'),
+    path('comment/new/<int:article_id>/', views.comment_create, name='comment_create'),
     path('logout/', LogoutView.as_view(), name='logout'),
 ]
