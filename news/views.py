@@ -12,7 +12,7 @@ def index(request):
     page_obj = paginator.get_page(page_number)
     return render(request, 'news/index.html', {'page_obj': page_obj})
 
-@login_required(login_url='/user_management/login/')
+
 def article_detail(request, id):
     article = get_object_or_404(Article, id=id)
     comments = article.comments.all()
@@ -28,7 +28,7 @@ def article_detail(request, id):
         form = CommentForm()
     return render(request, 'news/article_detail.html', {'article': article, 'comments': comments, 'form': form})
 
-@login_required
+@login_required(login_url='/user_management/login/')
 def article_create(request):
     if request.method == 'POST':
         form = ArticleForm(request.POST)
@@ -41,7 +41,7 @@ def article_create(request):
         form = ArticleForm()
     return render(request, 'news/article_form.html', {'form': form})
 
-@login_required
+@login_required(login_url='/user_management/login/')
 def article_edit(request, id):
     article = get_object_or_404(Article, id=id)
     if request.method == 'POST':
@@ -53,7 +53,7 @@ def article_edit(request, id):
         form = ArticleForm(instance=article)
     return render(request, 'news/article_form.html', {'form': form})
 
-@login_required
+@login_required(login_url='/user_management/login/')
 def article_delete(request, id):
     article = get_object_or_404(Article, id=id)
     if request.method == 'POST':

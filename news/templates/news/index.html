@@ -10,11 +10,13 @@
                 News Articles
               </h1>
             </div>
-            <div class="col-6">
-              <a href="{% url 'news:article_create' %}" class="btn btn-primary float-end">
-                Create New Article
-              </a>
-            </div>
+            {% if user.is_authenticated and user.is_editor and user.author == request.user %}
+              <div class="col-6">
+                <a href="{% url 'news:article_create' %}" class="btn btn-primary float-end">
+                  Create New Article
+                </a>
+              </div>
+            {% endif %}
           </div>
         </div>
         <div class="list-group">
@@ -27,15 +29,11 @@
             aria-current="true">
               {{ article.title }} 
             </a>
-            {% comment %} <form method="post" action="{% url 'news:article_delete' article.id %}">
-              {% csrf_token %}
-              <button class="btn btn-danger">
-                <i class="bi bi-trash3"></i>
-              </button>
-            </form> {% endcomment %}
-            <a href="{% url 'news:article_delete' article.id %}" class="btn btn-danger float-end">
-                <i class="bi bi-trash3"></i>
-            </a>
+            {% if user.is_authenticated and user.is_editor and user.author == request.user %}
+              <a href="{% url 'news:article_delete' article.id %}" class="btn btn-danger h-content float-end">
+                  <i class="bi bi-trash3"></i>
+              </a>
+            {% endif %}
           </div>
           {% endfor %}
         </div>
