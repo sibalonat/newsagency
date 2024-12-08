@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
 from .models import Article, Comment
 from django.core.paginator import Paginator
 from .forms import ArticleForm, CommentForm
@@ -73,3 +74,7 @@ def comment_create(request, article_id):
             comment.save()
             return redirect('news:article_detail', id=comment.article.id)
     return redirect('news:index')
+
+def user_articles(request, user_id):
+    articles = Article.objects.filter(author_id=user_id).values('id', 'title', 'created_at')
+    return JsonResponse(list(articles), safe=False)

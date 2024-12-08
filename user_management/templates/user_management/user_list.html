@@ -9,15 +9,15 @@
   </div>
   <div class="list-group">
     {% for user in users %}
-    <div href="{% url 'user_detail' user.id %}" 
+    <div
     class="list-group-item list-group-item-action d-flex flex-row justify-content-between" 
     aria-current="true">
-    <a href="{% url 'user_detail' user.id %}" 
+    <a href="{% url 'management:user_detail' user.id %}" 
     class="text-decoration-none col-10" 
     aria-current="true">
       {{ user.username }} 
     </a>
-    <form method="post" action="{% url 'user_delete' user.id %}">
+    <form method="post" action="{% url 'management:user_delete' user.id %}">
       {% csrf_token %}
       <button class="btn btn-danger">
         <i class="bi bi-trash3"></i>
@@ -27,7 +27,7 @@
     {% endfor %}
   </div>
 </div>
-<a href="{% url 'user_create' %}">
+<a href="{% url 'management:user_create' %}">
   Create User
 </a>
 {% endblock %}
