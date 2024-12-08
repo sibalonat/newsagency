@@ -1,4 +1,5 @@
 {% extends "news/layout.html" %}
+{% load form_tags %}
 {% load static %}
 
 {% block body %}
@@ -23,12 +24,12 @@
                 </p>
 
                 </div>
-                <div class="col-2">
+                <div class="col-2 button-display">
                     <a href="{% url 'news:article_edit' article.id %}" class="btn btn-primary float-end">
                         <i class="bi bi-pencil"></i>
                     </a>
                 </div>
-                <div class="col-2">
+                <div class="col-2 button-display">
                     <form method="post" action="{% url 'news:article_delete' article.id %}">
                         {% csrf_token %}
                         <button class="btn btn-danger">
@@ -55,7 +56,12 @@
             </ul>
             <form method="post" action="{% url 'news:comment_create' %}">
                 {% csrf_token %}
-                {{ form.as_p }}
+                <div class="form-group">
+                    {{ form.content|add_attrs:"class:form-control rounded-0, type:textarea, rows:2, cols:50" }}
+                    {% if form.content.errors %}
+                        <div class="text-danger">{{ form.content.errors }}</div>
+                    {% endif %}
+                </div>
                 <button type="submit" class="btn btn-primary mt-2">Add Comment</button>
             </form>
         </div>

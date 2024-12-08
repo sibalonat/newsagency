@@ -15,3 +15,9 @@
 .text-sm {
     font-size: 0.8rem;
 }
+
+.button-display {
+    justify-content: end;
+    display: flex;
+    height: fit-content;
+}

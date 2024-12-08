@@ -34,6 +34,6 @@ def add_attrs(field, attrs):
         key, value = definition.split(':')
         attrs_dict[key.strip()] = value.strip()
     if 'type' in attrs_dict and attrs_dict['type'] == 'textarea':
-        del attrs_dict['type']
+        # del attrs_dict['type']
         return field.as_widget(widget=Textarea(attrs=attrs_dict))
     return field.as_widget(attrs=attrs_dict)
