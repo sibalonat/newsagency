@@ -7,9 +7,6 @@
           <h2 class="text-center text-uppercase">
             Register
           </h2>
-          {% if message %}
-            <div>{{ message }}</div>
-          {% endif %}
         </div>
         <div class="card-body">
           <form method="post">
@@ -19,21 +16,27 @@
                 Username
               </label>
               {{ form.username|add_class:"form-control rounded-0" }}
+              {% if form.username.errors %}
+                <div class="text-danger">{{ form.username.errors }}</div>
+              {% endif %}
             </div>
             <div class="form-group">
                 <label for="email" class="mt-2 mb-1 text-secondary text-sm">
                   Email
                 </label>
                 {{ form.email|add_attrs:"class:form-control rounded-0, type:email" }}
-                {% if form.username.errors %}
-                  <div class="text-danger">{{ form.username.errors }}</div>
+                {% if form.email.errors %}
+                  <div class="text-danger">{{ form.email.errors }}</div>
                 {% endif %}
             </div>
             <div class="form-group">
-              <label for="password" class="mt-2 mb-1 text-secondary text-sm">
-                Password
-              </label>
-              {{ form.password|add_class:"form-control rounded-0" }}
+                <label for="password" class="mt-2 mb-1 text-secondary text-sm">
+                    Password
+                </label>
+                {{ form.password|add_class:"form-control rounded-0" }}
+                {% if form.password.errors %}
+                  <div class="text-danger">{{ form.password.errors }}</div>
+                {% endif %}
             </div>
             <div class="form-group">
               <button type="submit" class="btn btn-primary rounded-0 mt-2">

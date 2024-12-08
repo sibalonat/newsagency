@@ -66,11 +66,10 @@ def register(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
+            user.is_reader = True
             user = form.save()
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=password)
-            auth_login(request, user)
+            
+            auth_login(request, user) 
             return redirect('news:index')
     else:
         form = UserCreationForm()
