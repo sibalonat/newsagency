@@ -40,6 +40,9 @@
             </div>
         </div>
         <div class="card-body">
+            {% if article.image_url %}
+                <img src="{{ article.image_url }}" class="img-fluid masked-image" alt="Article Image">
+            {% endif %}
             <p class="card-text">
                 {{ article.content }}
             </p>
