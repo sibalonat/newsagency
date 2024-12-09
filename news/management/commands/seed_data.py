@@ -1,8 +1,10 @@
 from django.core.management.base import BaseCommand
-from news.models import User
+from news.models import User, Article
+import lorem
+import random
 
 class Command(BaseCommand):
-    help = 'Seed the database with initial users'
+    help = 'Seed the database with initial users and articles'
 
     def handle(self, *args, **kwargs):
         users = [
@@ -21,3 +23,17 @@ class Command(BaseCommand):
                 self.stdout.write(self.style.SUCCESS(f"User '{user.username}' created"))
             else:
                 self.stdout.write(self.style.WARNING(f"User '{user.username}' already exists"))
+
+        # Create articles and assign them to one of the editors
+        editors = User.objects.filter(is_editor=True)
+        for i in range(30):  
+            editor = random.choice(editors)
+            title = lorem.sentence()
+            content = [lorem.paragraph() for _ in range(5)]
+            article = Article.objects.create(
+                title=title,
+                content='\n\n'.join(content),
+                author=editor,
+                image_url='https://i.postimg.cc/Zq4Syv95/output.jpg'
+            )
+            self.stdout.write(self.style.SUCCESS(f"Article '{article.title}' created by '{editor.username}'"))
