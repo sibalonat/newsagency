@@ -48,7 +48,7 @@ def user_create(request):
             user.set_password(form.cleaned_data['password'])
             user.save()
             form = UserCreationForm()
-            return redirect('user_list')
+            return redirect('management:user_list')
     else:
         form = UserCreationForm()
     return render(request, 'user_management/user_create.html', {'form': form})
