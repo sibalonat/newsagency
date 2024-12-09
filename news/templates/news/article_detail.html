@@ -11,7 +11,11 @@
                     {{ article.title }}
                 </h1>
                 <p class="text-secondary text-sm"> Author:  
-                    <span class="text-capitalize fw-bold"> {{ article.author.username }} </span> 
+                    <a 
+                    href={% url 'news:user_articles' article.author.id 'html' %} 
+                    class="text-capitalize fw-bold text-decoration-none"> 
+                        {{ article.author.username }} 
+                    </a> 
                 </p>
                 <p class="text-secondary text-sm mb-1">
                     Created at: {{ article.created_at }}

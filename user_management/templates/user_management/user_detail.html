@@ -41,7 +41,7 @@
 
 {% block script %}
     <script>
-      const userArticlesUrl = "{% url 'news:user_articles' 0 %}";
+      const userArticlesUrl = "{% url 'news:user_articles' 0 'type' %}";
     </script>
     <script src="{% static 'user_management/index.js' %}"></script>
 {% endblock %}

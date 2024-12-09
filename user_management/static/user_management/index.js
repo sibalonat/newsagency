@@ -9,7 +9,7 @@ function toggleRoles() {
 }
 
 function getUserArticles(userId) {
-    const url = userArticlesUrl.replace('0', userId);    
+    const url = userArticlesUrl.replace('0', userId).replace('type', 'json');     
     fetch(url)
         .then(response => response.json())
         .then(articles => {

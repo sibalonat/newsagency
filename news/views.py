@@ -1,10 +1,10 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
-from .models import Article, Comment
+from .models import Article, Comment, User
 from django.core.paginator import Paginator
 from .forms import ArticleForm, CommentForm
-
+from django.urls import reverse_lazy
 
 def index(request):
     articles = Article.objects.all().order_by('-updated_at')
@@ -75,6 +75,28 @@ def comment_create(request, article_id):
             return redirect('news:article_detail', id=comment.article.id)
     return redirect('news:index')
 
-def user_articles(request, user_id):
-    articles = Article.objects.filter(author_id=user_id).values('id', 'title', 'created_at')
-    return JsonResponse(list(articles), safe=False)
+# def user_articles(request, user_id):
+#     articles = Article.objects.filter(author_id=user_id).values('id', 'title', 'created_at')
+#     return JsonResponse(list(articles), safe=False)
+
+# @login_required
+# def user_articles(request, user_id):
+#     articles = Article.objects.all().order_by('-updated_at')
+#     paginator = Paginator(articles, 10)
+#     page_number = request.GET.get('page')
+#     page_obj = paginator.get_page(page_number)
+#     return render(request, 'news/user_articles.html', {'page_obj': page_obj})
+
+def user_articles(request, user_id, type):
+    author = get_object_or_404(User, id=user_id)
+    if type == 'json':
+        articles = Article.objects.filter(author_id=user_id).values('id', 'title', 'created_at')
+        return JsonResponse(list(articles), safe=False)
+    elif type == 'html':
+        articles = Article.objects.filter(author_id=user_id).order_by('-updated_at')
+        paginator = Paginator(articles, 10)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        return render(request, 'news/user_articles.html', {'page_obj': page_obj, 'author': author})
+    else:
+        return JsonResponse({'error': 'Invalid type parameter'}, status=400)
