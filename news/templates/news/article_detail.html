@@ -61,7 +61,7 @@
                 {% endfor %}
             </ul>
             {% if user.is_authenticated and not user.is_editor %}
-                {% if user.is_reader %}
+                {% if user.is_reader and not user.is_superuser %}
                     <form method="post" action="{% url 'news:comment_create' article.id %}">
                         {% csrf_token %}
                         <div class="form-group">
