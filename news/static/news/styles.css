@@ -16,6 +16,11 @@
     font-size: 0.8rem;
 }
 
+@media (min-width: 576px) {
+    .text-sm {
+        font-size: 1.5rem;
+    }
+}
 .button-display {
     justify-content: end;
     display: flex;

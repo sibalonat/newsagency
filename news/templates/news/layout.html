@@ -12,8 +12,8 @@
         {% endblock %}
     </head>
     <body>
-        <div class="container min-vh-100 d-flex align-items-center flex-column">
-            <ul class="nav">
+        <div class="container-fluid min-vh-100 d-flex align-items-center flex-column">
+            <ul class="nav justify-content-center w-100">
                 <li class="nav-item my-auto">
                     {% if user.is_authenticated %}
                         Signed in as <strong>{{ user.username }}</strong>.

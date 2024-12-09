@@ -3,32 +3,32 @@
 {% load static %}
 
 {% block body %}
-    <div class="card w-75">
+    <div class="card w-sm-75 w-100">
         <div class="card-header">
             <div class="row">
-                <div class="col-8">
-                <h1 class="text-uppercase">
-                    {{ article.title }}
-                </h1>
-                <p class="text-secondary text-sm"> Author:  
-                    <a 
-                    href={% url 'news:user_articles' article.author.id 'html' %} 
-                    class="text-capitalize fw-bold text-decoration-none"> 
-                        {{ article.author.username }} 
-                    </a> 
-                </p>
-                <p class="text-secondary text-sm mb-1">
-                    Created at: {{ article.created_at }}
-                </p>
-                <p class="text-secondary text-sm mb-1">
-                    Updated at: {{ article.updated_at }}
-                </p>
-                <p class="text-secondary fst-italic text-sm mb-1">
-                    Comments: {{ comments.count }}
-                </p>
-
-                </div>
                 {% if article.author == request.user %}
+                    <div class="col-8">
+                        <h1 class="text-uppercase">
+                            {{ article.title }}
+                        </h1>
+                        <p class="text-secondary text-sm"> Author:  
+                            <a 
+                            href={% url 'news:user_articles' article.author.id 'html' %} 
+                            class="text-capitalize fw-bold text-decoration-none"> 
+                                {{ article.author.username }} 
+                            </a> 
+                        </p>
+                        <p class="text-secondary text-sm mb-1">
+                            Created at: {{ article.created_at }}
+                        </p>
+                        <p class="text-secondary text-sm mb-1">
+                            Updated at: {{ article.updated_at }}
+                        </p>
+                        <p class="text-secondary fst-italic text-sm mb-1">
+                            Comments: {{ comments.count }}
+                        </p>
+
+                    </div>
                     <div class="col-2 button-display">
                         <a href="{% url 'news:article_edit' article.id %}" class="btn btn-primary float-end">
                             <i class="bi bi-pencil"></i>
@@ -39,6 +39,28 @@
                             <i class="bi bi-trash3"></i>
                         </a>
                     </div>
+                {% else %}
+                    <div class="col-12">
+                        <h1 class="text-uppercase">
+                            {{ article.title }}
+                        </h1>
+                        <p class="text-secondary text-sm"> Author:  
+                            <a 
+                            href={% url 'news:user_articles' article.author.id 'html' %} 
+                            class="text-capitalize fw-bold text-decoration-none"> 
+                                {{ article.author.username }} 
+                            </a> 
+                        </p>
+                        <p class="text-secondary text-sm mb-1">
+                            Created at: {{ article.created_at }}
+                        </p>
+                        <p class="text-secondary text-sm mb-1">
+                            Updated at: {{ article.updated_at }}
+                        </p>
+                        <p class="text-secondary fst-italic text-sm mb-1">
+                            Comments: {{ comments.count }}
+                        </p>
+                    </div>
                 {% endif %}
             </div>
         </div>
@@ -46,7 +68,7 @@
             {% if article.image_url %}
                 <img src="{{ article.image_url }}" class="img-fluid masked-image" alt="Article Image">
             {% endif %}
-            <p class="card-text">
+            <p class="card-text text-sm lh-sm">
                 {{ article.content }}
             </p>
         </div>
