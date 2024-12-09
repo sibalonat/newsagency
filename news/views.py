@@ -29,7 +29,7 @@ def article_detail(request, id):
         form = CommentForm()
     return render(request, 'news/article_detail.html', {'article': article, 'comments': comments, 'form': form})
 
-@login_required(login_url='/user_management/login/')
+@login_required(login_url=reverse_lazy('management:login'))
 def article_create(request):
     if request.method == 'POST':
         form = ArticleForm(request.POST)
@@ -42,7 +42,7 @@ def article_create(request):
         form = ArticleForm()
     return render(request, 'news/article_form.html', {'form': form})
 
-@login_required(login_url='/user_management/login/')
+@login_required(login_url=reverse_lazy('management:login'))
 def article_edit(request, id):
     article = get_object_or_404(Article, id=id)
     if request.method == 'POST':
@@ -54,7 +54,7 @@ def article_edit(request, id):
         form = ArticleForm(instance=article)
     return render(request, 'news/article_form.html', {'form': form})
 
-@login_required(login_url='/user_management/login/')
+@login_required(login_url=reverse_lazy('management:login'))
 def article_delete(request, id):
     article = get_object_or_404(Article, id=id)
     if request.method == 'POST':
@@ -62,7 +62,7 @@ def article_delete(request, id):
         return redirect('news:index')
     return render(request, 'news/article_confirm_delete.html', {'article': article})
 
-@login_required
+@login_required(login_url=reverse_lazy('management:login'))
 def comment_create(request, article_id):
     article = get_object_or_404(Article, id=article_id)
     if request.method == 'POST':
@@ -74,18 +74,6 @@ def comment_create(request, article_id):
             comment.save()
             return redirect('news:article_detail', id=comment.article.id)
     return redirect('news:index')
-
-# def user_articles(request, user_id):
-#     articles = Article.objects.filter(author_id=user_id).values('id', 'title', 'created_at')
-#     return JsonResponse(list(articles), safe=False)
-
-# @login_required
-# def user_articles(request, user_id):
-#     articles = Article.objects.all().order_by('-updated_at')
-#     paginator = Paginator(articles, 10)
-#     page_number = request.GET.get('page')
-#     page_obj = paginator.get_page(page_number)
-#     return render(request, 'news/user_articles.html', {'page_obj': page_obj})
 
 def user_articles(request, user_id, type):
     author = get_object_or_404(User, id=user_id)

@@ -9,12 +9,12 @@ from .forms import UserCreationForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.views.decorators.csrf import csrf_protect
 
-@login_required(login_url=reverse_lazy('login'))
+@login_required(login_url=reverse_lazy('management:login'))
 def user_list(request):
     users = User.objects.all()
     return render(request, 'user_management/user_list.html', {'users': users})
 
-@login_required(login_url=reverse_lazy('login'))
+@login_required(login_url=reverse_lazy('management:login'))
 def user_detail(request, user_id):
     user = get_object_or_404(User, id=user_id)
     if request.method == 'POST':
@@ -39,7 +39,7 @@ def custom_login(request):
         form = AuthenticationForm(request)
     return render(request, 'user_management/login.html', {'form': form})
 
-@login_required
+@login_required(login_url=reverse_lazy('management:login'))
 def user_create(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
@@ -53,7 +53,7 @@ def user_create(request):
         form = UserCreationForm()
     return render(request, 'user_management/user_create.html', {'form': form})
 
-@login_required
+@login_required(login_url=reverse_lazy('management:login'))
 def user_delete(request, user_id):
     user = get_object_or_404(User, id=user_id)
     if request.method == 'POST':
