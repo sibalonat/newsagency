@@ -21,6 +21,19 @@
     width: 100%;
 }
 
+.top {
+    top: -4px;
+}
+
+.left {
+    left: 0px;
+}
+
+.btn:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
 @media (min-width: 576px) {
 
     .width {

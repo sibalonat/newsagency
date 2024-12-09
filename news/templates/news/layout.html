@@ -28,7 +28,7 @@
                 <ul class="dropdown-menu p-2" aria-labelledby="dropdownMenuButton">
                     <li class="nav-item my-auto">
                         {% if user.is_authenticated %}
-                            Signed in as <strong>{{ user.username }}</strong>.
+                            Signed in as <br> <strong class="text-capitalize">{{ user.username }}</strong>.
                         {% else %}
                             Not signed in.
                         {% endif %}

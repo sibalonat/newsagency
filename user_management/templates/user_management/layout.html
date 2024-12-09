@@ -13,7 +13,7 @@
         {% endblock %}
     </head>
     <body>
-        <div class="container-fluid min-vh-100 d-flex align-items-center flex-column">
+        {% comment %} <div class="container-fluid min-vh-100 d-flex align-items-center flex-column">
             <ul class="nav justify-content-center w-100">
                 <li class="nav-item my-auto">
                     {% if request.user.is_authenticated %}
@@ -53,6 +53,104 @@
                     </li>
             {% endif %}
             </ul>
+            <hr>
+            {% block body %}
+            {% endblock %}
+        </div> {% endcomment %}
+        <div class="container-fluid min-vh-100 d-flex align-items-center position-relative flex-column">
+            <!-- Toggle button for mobile view -->
+            <div class="dropdown d-md-none position-absolute top left m-2">
+                <button 
+                title="Navigation"
+                class="btn dropdown-toggle display" 
+                type="button" id="dropdownMenuButton" 
+                data-bs-toggle="dropdown" 
+                aria-expanded="false">
+                    <i class="bi bi-list"></i>
+                </button>
+                <ul class="dropdown-menu p-2" aria-labelledby="dropdownMenuButton">
+                    <li class="nav-item my-auto">
+                        {% if user.is_authenticated %}
+                            Signed in as <br> <strong class="text-capitalize">{{ user.username }}</strong>.
+                        {% else %}
+                            Not signed in.
+                        {% endif %}
+                    </li>
+                    {% if user.is_authenticated %}
+                        {% if user.is_superuser %}
+                            <li class="nav-item my-auto">
+                                <a class="dropdown-item" href="{% url 'management:user_list' %}">User List</a>
+                            </li>
+                            <li class="nav-item my-auto">
+                                <a class="dropdown-item" href="{% url 'management:user_create' %}">Create User</a>
+                            </li>
+                        {% elif user.is_editor %}
+                            <li class="nav-item my-auto">
+                                <a class="dropdown-item" href="{% url 'news:article_create' %}">Create Article</a>
+                            </li>
+                            <li class="nav-item my-auto">
+                                <a class="dropdown-item" href="/">List of Articles</a>
+                            </li>
+                        {% endif %}
+                        <li class="nav-item my-auto">
+                            <form method="post" action="{% url 'news:logout' %}">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-link dropdown-item" style="padding: 0;">Log Out</button>
+                            </form>
+                        </li>
+                    {% else %}
+                        <li class="nav-item my-auto">
+                            <a class="dropdown-item" href="{% url 'management:login' %}">Log In</a>
+                        </li>
+                        <li class="nav-item my-auto">
+                            <a class="dropdown-item" href="{% url 'management:register' %}">Register</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+
+            <!-- Navigation section for larger screens -->
+            <div class="d-none d-md-block w-100">
+                <ul class="nav justify-content-center w-100">
+                    <li class="nav-item my-auto">
+                        {% if user.is_authenticated %}
+                            Signed in as <strong>{{ user.username }}</strong>.
+                        {% else %}
+                            Not signed in.
+                        {% endif %}
+                    </li>
+                    {% if user.is_authenticated %}
+                        {% if user.is_superuser %}
+                            <li class="nav-item my-auto">
+                                <a class="nav-link" href="{% url 'management:user_list' %}">User List</a>
+                            </li>
+                            <li class="nav-item my-auto">
+                                <a class="nav-link" href="{% url 'management:user_create' %}">Create User</a>
+                            </li>
+                        {% elif user.is_editor %}
+                            <li class="nav-item my-auto">
+                                <a class="nav-link" href="{% url 'news:article_create' %}">Create Article</a>
+                            </li>
+                            <li class="nav-item my-auto">
+                                <a class="nav-link" href="/">List of Articles</a>
+                            </li>
+                        {% endif %}
+                        <li class="nav-item my-auto">
+                            <form method="post" action="{% url 'news:logout' %}">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-link nav-link" style="padding: 0;">Log Out</button>
+                            </form>
+                        </li>
+                    {% else %}
+                        <li class="nav-item my-auto">
+                            <a class="nav-link" href="{% url 'management:login' %}">Log In</a>
+                        </li>
+                        <li class="nav-item my-auto">
+                            <a class="nav-link" href="{% url 'management:register' %}">Register</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
             <hr>
             {% block body %}
             {% endblock %}
