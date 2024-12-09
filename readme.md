@@ -2,6 +2,52 @@
 
 In this presentation, we will go over the main features of this site for the course Web Programming with Python and JavaScript. This project serves as the final requirement for certification and demonstrates my capability to develop something independently. The project is a news agency, divided into two applications within the main news agency: one for creating and reading news, and the other for managing users to determine who among them is an editor.
 
+### Distinctiveness
+This project is distinct because it combines multiple functionalities into a single cohesive application. It is not a simple CRUD application but includes user role management, access control, and dynamic content generation. The project does not rely on Django's admin interface, making it a fully custom user experience.
+
+### Complexity
+The complexity of this project lies in its multi-role access control, middleware for route protection, and dynamic content management. The application includes:
+- Three distinct user roles (Reader, Editor, Superadmin) with specific permissions.
+- Middleware to enforce access control based on user roles.
+- Dynamic content generation and filtering.
+- Custom seeder command to populate the database with initial data.
+- Pagination for handling large datasets.
+
+## File Descriptions
+
+### `news/models.py`
+Contains the models for the application, including `Article` and `Comment`.
+
+### `news/views.py`
+Contains the views for handling requests and rendering templates.
+
+### `news/urls.py`
+Defines the URL patterns for the news application.
+
+### `user_management/models.py`
+Contains the user model with custom fields for roles.
+
+### `user_management/views.py`
+Contains the views for user management, including registration and role toggling.
+
+### `user_management/urls.py`
+Defines the URL patterns for the user management application.
+
+### `templates/news/*.html`
+Contains the HTML templates for the news application.
+
+### `templates/user_management/*.html`
+Contains the HTML templates for the user management application.
+
+### `static/news/styles.css`
+Custom CSS for styling the news application.
+
+### `static/user_management/index.js`
+JavaScript for handling dynamic content and user interactions.
+
+### `management/commands/seed_data.py`
+Custom management command to seed the database with initial users and articles.
+
 ## Roles
 
 There are three roles within the application, none of which utilize the admin dashboard provided by Django:
@@ -21,6 +67,10 @@ The `user_management` and `news` applications employ Bootstrap 5 for styling, al
 
 An important aspect of setting everything up is the seeder command. This command facilitates the creation of some editors, readers, and a superadmin (staff). Before executing the seed_data command, we must first install a lorem package to generate default content by running:
 
+```bash
+pip install -r requirements.txt
+```
+or 
 ```bash
 pip install lorem
 ```
