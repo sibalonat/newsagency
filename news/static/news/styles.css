@@ -9,7 +9,7 @@
 }
 
 .down_pagination {
-    bottom: 200px;
+    bottom: 0px;
 }
 
 .text-sm {
@@ -37,3 +37,47 @@
 .h-content {
     height: fit-content;
 }
+
+
+.width {
+    width: 100%;
+}
+
+.top-m {
+    margin-top: -25px;
+}
+
+.display {
+    position: relative;
+    z-index: 10;
+}
+
+.top {
+    top: 0px;
+}
+
+.left {
+    left: 0px;
+}
+
+.btn:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+
+@media (min-width: 576px) {
+    .top-m {
+        margin-top: 0px;
+    }
+
+    .width {
+        width: 50%;
+    }
+
+    .down_pagination {
+        bottom: 200px;
+    }
+
+}
+
