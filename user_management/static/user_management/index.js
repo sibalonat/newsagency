@@ -17,7 +17,7 @@ function getUserArticles(userId) {
             container.innerHTML = '<h3>Articles</h3>';
             if (articles.length > 0) {
                 const list = document.createElement('ul');
-                list.classList.add('list-group-item');
+                list.classList.add('list-group-item', 'border-0', 'border');
                 articles.forEach(article => {
                     const listItem = document.createElement('li');
                     listItem.classList.add('list-group-item');
