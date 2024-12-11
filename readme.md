@@ -27,6 +27,15 @@ Contains the views for handling requests and rendering templates.
 ### `news/urls.py`
 Defines the URL patterns for the news application.
 
+### `news/forms.py`
+Contains the forms for the news application.
+
+### `news/templatetags/news_tags.py`
+Contains custom template tags for the news application.
+
+### `news/templates/news/*.html`
+Contains the HTML templates for the news application.
+
 ### `user_management/models.py`
 Contains the user model with custom fields for roles.
 
@@ -36,19 +45,25 @@ Contains the views for user management, including registration and role toggling
 ### `user_management/urls.py`
 Defines the URL patterns for the user management application.
 
-### `templates/news/*.html`
-Contains the HTML templates for the news application.
+### `user_management/forms.py`
+Contains the forms for the user management application.
 
-### `templates/user_management/*.html`
+### `user_management/templatetags/user_management_tags.py`
+Contains custom template tags for the user management application.
+
+### `user_management/templates/user_management/*.html`
 Contains the HTML templates for the user management application.
 
-### `static/news/styles.css`
+### `news/static/news/styles.css`
 Custom CSS for styling the news application.
 
-### `static/user_management/index.js`
+### `user_management/static/user_management/index.js`
 JavaScript for handling dynamic content and user interactions.
 
-### `management/commands/seed_data.py`
+### `user_management/static/user_management/index.js`
+Custom CSS for styling the user managment application.
+
+### `news/management/commands/seed_data.py`
 Custom management command to seed the database with initial users and articles.
 
 
