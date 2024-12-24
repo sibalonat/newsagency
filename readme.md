@@ -5,18 +5,19 @@ In this presentation, we will go over the main features of this site for the cou
 ## Distinctiveness and Complexity
 
 ### Distinctiveness
-This project is distinct because it combines multiple functionalities into a single cohesive application. Unlike the other projects in this course, it is not a simple CRUD application but includes user role management, access control, and dynamic content generation. The project does not rely on Django's admin interface, making it a fully custom user experience. Additionally, the project includes features such as article creation, editing, deletion, and commenting, which are not present in the other projects.
+This project is distinct because it integrates multiple functionalities into a single cohesive application, unlike other projects in this course which are typically simpler CRUD applications.
+It includes user role management, access control, and dynamic content generation, providing a fully custom user experience without relying on Django's admin interface.
+Features such as article creation, editing, deletion, and commenting add to its uniqueness, as these are not present in other projects.
 
 ### Complexity
-The complexity of this project lies in its multi-role access control, middleware for route protection, and dynamic content management. The application includes:
-- Three distinct user roles (Reader, Editor, Superadmin) with specific permissions.
-- Middleware to enforce access control based on user roles.
-- Dynamic content generation and filtering.
-- Custom seeder command to populate the database with initial data.
-- Pagination for handling large datasets.
-- Custom template tags and forms for both the news and user management applications.
-- Integration of Bootstrap 5 for responsive design and custom CSS for additional styling.
-- Use of JavaScript for dynamic content and user interactions.
+The project involves multi-role access control, middleware for route protection, and dynamic content management. The application includes:
+- It includes three distinct user roles (Reader, Editor, Superadmin) with specific permissions, adding to the complexity.
+- Middleware is used to enforce access control based on user roles, ensuring secure and appropriate access to different parts of the application.
+- Dynamic content generation and filtering, along with a custom seeder command to populate the database with initial data, add layers of complexity.
+- Pagination is implemented to handle large datasets efficiently.
+- Custom template tags and forms are used for both the news and user management applications.
+- The integration of Bootstrap 5 for responsive design and custom CSS for additional styling enhances the user interface.
+- JavaScript is used for dynamic content and user interactions, making the application more interactive and user-friendly.
 
 
 ## File Descriptions
