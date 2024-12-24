@@ -1,11 +1,11 @@
-# News Agency Project
+ News Agency Project
 
 In this presentation, we will go over the main features of this site for the course Web Programming with Python and JavaScript. This project serves as the final requirement for certification and demonstrates my capability to develop something independently. The project is a news agency, divided into two applications within the main news agency: one for creating and reading news, and the other for managing users to determine who among them is an editor.
 
 ## Distinctiveness and Complexity
 
 ### Distinctiveness
-This project is distinct because it combines multiple functionalities into a single cohesive application. It is not a simple CRUD application but includes user role management, access control, and dynamic content generation. The project does not rely on Django's admin interface, making it a fully custom user experience.
+This project is distinct because it combines multiple functionalities into a single cohesive application. Unlike the other projects in this course, it is not a simple CRUD application but includes user role management, access control, and dynamic content generation. The project does not rely on Django's admin interface, making it a fully custom user experience. Additionally, the project includes features such as article creation, editing, deletion, and commenting, which are not present in the other projects.
 
 ### Complexity
 The complexity of this project lies in its multi-role access control, middleware for route protection, and dynamic content management. The application includes:
@@ -14,6 +14,9 @@ The complexity of this project lies in its multi-role access control, middleware
 - Dynamic content generation and filtering.
 - Custom seeder command to populate the database with initial data.
 - Pagination for handling large datasets.
+- Custom template tags and forms for both the news and user management applications.
+- Integration of Bootstrap 5 for responsive design and custom CSS for additional styling.
+- Use of JavaScript for dynamic content and user interactions.
 
 
 ## File Descriptions
@@ -24,17 +27,20 @@ Contains the models for the application, including `Article` and `Comment`.
 ### `news/views.py`
 Contains the views for handling requests and rendering templates.
 
+### `news/management/commands/seed_data.py`
+Custom management command to seed the database with initial users and articles.
+
 ### `news/urls.py`
 Defines the URL patterns for the news application.
 
 ### `news/forms.py`
 Contains the forms for the news application.
 
-### `news/templatetags/news_tags.py`
-Contains custom template tags for the news application.
-
 ### `news/templates/news/*.html`
 Contains the HTML templates for the news application.
+
+### `news/static/news/styles.css`
+Custom CSS for styling the news application.
 
 ### `user_management/models.py`
 Contains the user model with custom fields for roles.
@@ -48,23 +54,17 @@ Defines the URL patterns for the user management application.
 ### `user_management/forms.py`
 Contains the forms for the user management application.
 
-### `user_management/templatetags/user_management_tags.py`
+### `user_management/templatetags/form_tags.py`
 Contains custom template tags for the user management application.
 
 ### `user_management/templates/user_management/*.html`
 Contains the HTML templates for the user management application.
 
-### `news/static/news/styles.css`
+### `user_management/static/user_management/styles.css`
 Custom CSS for styling the news application.
 
 ### `user_management/static/user_management/index.js`
 JavaScript for handling dynamic content and user interactions.
-
-### `user_management/static/user_management/index.js`
-Custom CSS for styling the user managment application.
-
-### `news/management/commands/seed_data.py`
-Custom management command to seed the database with initial users and articles.
 
 
 ## How to Run Your Application
