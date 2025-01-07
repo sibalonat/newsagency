@@ -13,50 +13,6 @@
         {% endblock %}
     </head>
     <body>
-        {% comment %} <div class="container-fluid min-vh-100 d-flex align-items-center flex-column">
-            <ul class="nav justify-content-center w-100">
-                <li class="nav-item my-auto">
-                    {% if request.user.is_authenticated %}
-                        Signed in as <strong>{{ request.user.username }}</strong>.
-                    {% else %}
-                        Not signed in.
-                    {% endif %}
-                </li>
-                {% if request.user.is_authenticated %}
-                    {% if request.user.is_superuser %}
-                        <li class="nav-item my-auto">
-                            <a class="nav-link" href="{% url 'management:user_list' %}">User List</a>
-                        </li>
-                        <li class="nav-item my-auto">
-                            <a class="nav-link" href="{% url 'management:user_create' %}">Create User</a>
-                        </li>
-                    {% elif request.user.is_editor %}
-                        <li class="nav-item my-auto">
-                            <a class="nav-link" href="{% url 'news:article_create' %}">Create Article</a>
-                        </li>
-                        <li class="nav-item my-auto">
-                            <a class="nav-link" href="/">List of Articles</a>
-                        </li>
-                    {% endif %}
-                    <li class="nav-item my-auto">
-                        <form method="post" action="{% url 'management:logout' %}">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-link nav-link" style="padding: 0;">Log Out</button>
-                        </form>
-                    </li>
-                {% else %}
-                    <li class="nav-item my-auto">
-                        <a class="nav-link" href="{% url 'management:login' %}">Log In</a>
-                    </li>
-                    <li class="nav-item my-auto">
-                        <a class="nav-link" href="{% url 'management:register' %}">Register</a>
-                    </li>
-            {% endif %}
-            </ul>
-            <hr>
-            {% block body %}
-            {% endblock %}
-        </div> {% endcomment %}
         <div class="container-fluid min-vh-100 d-flex align-items-center position-relative flex-column">
             <!-- Toggle button for mobile view -->
             <div class="dropdown d-md-none position-absolute top left m-2">
